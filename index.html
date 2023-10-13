@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+
+</head>
+<body>
+
+    <main class="flex flex-col flex-wrap justify-items-center items-center gap-[10px]  bg-gradient-to-bl from-teal-300 via-teal-700 to-sky-300 h-screen">
+        <div class="mt-[50px] sm:mt-[10px] flex flex-col items-center">
+            <h1 class="text-lg	font-sans font-semibold">ESTE ES EL JUEGO DE  ✊, 🤚 o ✌️</h1>
+            <p id="parraforondas" class="text-xl font-sans font-semibold">¿Cuántas rondas deseas jugar?</p>
+            <input class="border-2 w-[50px] text-center" type="number" id="jugadas" min="1" value="1" >
+
+        </div>
+
+        <div id="div-opciones"></div>  
+
+        <button class="inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]" id="btn-configurar" onclick="planificarJuego()">Jugar</button>
+
+        <div id="div-jugar" class="drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] flex justify-center items-center absolute top-[100px] sm:top-[50px]"></div>
+        <div class="sm:mt-[90px] mt-[180px] ml-[50px] flex justify-center items-center gap-[50px]">
+
+            <div id="divtu" class="flex flex-col justify-center items-center">
+                <h1 id="h1jugador" class="hidden"  >Tú</h1>
+
+            </div>
+            <div id="divpc" class="flex flex-col justify-center items-center">
+                <h1 id="h1pc" class="hidden" >PC</h1>
+
+            </div>    
+    
+        </div>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg hidden mt-[50px] sm:mt-[10px]" id="divtable">
+            <h2 id="contador"></h2>
+            <table id="table" class="text-sm text-left text-blue-100 dark:text-blue-100">
+                <thead class="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
+                    <tr class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500 text-center">
+                        <th scope="col" class="px-6 py-3">Victorias</th>
+                        <th id="winresultado" class="px-6 py-4"></th>                  
+                    </tr>
+                    <tr class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500 text-center">
+                        <th scope="col" class="px-6 py-3">Derrotas</th>
+                        <th id="lostresultado" class="px-6 py-4"></th>
+                    </tr>
+                    <tr class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500 text-center">
+                        <th scope="col" class="px-6 py-3">Empates</th>
+                        <th id="tieresultado" class="px-6 py-4"></th>
+                    </tr>
+                    <tr class="bg-blue-600 border-b border-blue-400 hover:bg-blue-500 text-center">
+                        <th scope="col" class="px-6 py-3">Intentos</th>
+                        <th id="intentosresultados" class="px-6 py-4"></th>
+                    </tr>
+
+                </thead>
+            </table>
+        </div>
+
+        
+        <div class="ml-[50px] flex flex-col justify-center items-center gap-[10px]">
+            <h1 class="hidden" id="h1finalizado">Juego finalizado</h1>
+            <button class="inline-block rounded bg-neutral-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]" id="btn_reset" style="display: none;"  onclick="location.reload()">Reset</button>
+        </div>     
+    </main>
+    
+    <script src="main.js"></script>
+</body>
+</html>
